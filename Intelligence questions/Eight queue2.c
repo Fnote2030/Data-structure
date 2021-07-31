@@ -4,6 +4,7 @@
 #define MAXNODE 8
 #define ROW 8
 #define COL 8
+#define COUNT 8
 typedef struct posnode
 {
     int x;
@@ -18,11 +19,11 @@ int count = 0;  //第几种可能
 
 
 //row,i位置是否可以落子
-int notDanger(int row,int col,int chess[8][8])
+int notDanger(int row,int col,int chess[ROW][COL])
 {
     int i = 0;
     int j = 0;
-    for (i = 0; i < 8; i++)
+    for (i = 0; i < ROW; i++)
     {
         if(chess[i][col]==1)
         {
@@ -38,7 +39,7 @@ int notDanger(int row,int col,int chess[8][8])
         }
     }
     //右下
-    for (i = row, j = col; i <=8 && j < 8; i++, j++)
+    for (i = row, j = col; i <=ROW && j < COL; i++, j++)
     {
         if(chess[i][j]==1)
         {
@@ -46,7 +47,7 @@ int notDanger(int row,int col,int chess[8][8])
         }
     }
     //右上
-    for (i = row, j = col; i >= 0 && j < 8; i--, j++)
+    for (i = row, j = col; i >= 0 && j < COL; i--, j++)
     {
         if(chess[i][j]==1)
         {
@@ -54,7 +55,7 @@ int notDanger(int row,int col,int chess[8][8])
         }
     }
     //左下
-    for (i = row, j = col; i < 8 && j >= 0; i++, j--)
+    for (i = row, j = col; i < ROW && j >= 0; i++, j--)
     {
         if(chess[i][j]==1)
         {
@@ -109,7 +110,7 @@ void EightQueen()
             int ly = 0;
             
             //没有落满八子
-            if(top+1 != 8)
+            if(top+1 != COUNT)
             {
                 //找到第top+1行的第num个位置落子
                 for (num = Step[top].nums; num < ROW; num++)
@@ -128,7 +129,7 @@ void EightQueen()
                 }
             }
             //八个皇后落在棋盘
-            if (8 == top+1)
+            if (COUNT == top+1)
             {
                 printf("第 %d 种:\n",++count);
                 for (i = 0; i < ROW; i++)
@@ -142,7 +143,7 @@ void EightQueen()
                 printf("\n");
             }    
             //是否回溯
-            if(num == ROW || top == 7)
+            if(num == ROW || top == COUNT-1)
             {
                 //出栈
                 lx = Step[top].x;

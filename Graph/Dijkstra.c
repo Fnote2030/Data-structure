@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 /*
-    无向图的邻接矩阵
+    无向图的邻接矩阵 v0到其他顶点的最短路径
 */
 
 #define MAXV 5
